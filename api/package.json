@@ -2,12 +2,15 @@
   "name": "film-list-api",
   "version": "0.1.0",
   "private": true,
+  "main": "functions/server.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "netlify-lambda build express",
+    "start": "node server-local.js"
   },
-  "dependencies": {
-    "cors": "2.8.5",
-    "express": "4.17.1",
-    "mongoose": "5.9.15"
+  "devDependencies": {
+    "serverless-http": "2.5.0",
+    "body-parser": "1.19.0",
+    "netlify-lambda": "1.6.3",
+    "express": "4.17.1"
   }
 }

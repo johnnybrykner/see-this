@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "npm --prefix frontend i && npm --prefix frontend run build"
+    "build": "npm --prefix frontend i && npm --prefix api i && npm --prefix frontend run build && npm --prefix api run build"
   },
   "devDependencies": {
     "husky": "4.2.5",
