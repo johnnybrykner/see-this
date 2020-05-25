@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "npm --prefix frontend i && npm --prefix api i && npm --prefix frontend run build && npm --prefix api run build"
+    "start": "next dev",
+    "build": "next build && next export"
+  },
+  "dependencies": {
+    "next": "9.4.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "sass": "1.26.5"
   },
   "devDependencies": {
     "husky": "4.2.5",
-    "lint-staged": "10.2.4",
+    "lint-staged": "10.2.6",
     "prettier": "2.0.5"
   },
   "husky": {
