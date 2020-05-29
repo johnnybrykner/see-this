@@ -1,0 +1,12 @@
+@import "../styles/global.scss";
+
+.container {
+  flex-flow: column nowrap;
+  display: flex;
+  color: $white-ish;
+  background-color: $black-ish;
+
+  img {
+    width: 100%;
+  }
+}

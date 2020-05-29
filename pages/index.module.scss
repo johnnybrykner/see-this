@@ -1,0 +1,10 @@
+@import "../styles/global.scss";
+@import "../styles/fonts.css";
+
+.films__section {
+  .cards__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 3rem;
+  }
+}

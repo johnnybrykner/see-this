@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const dbConnect = require("./db/dbConnect");
 const models = require("./db/models");
 

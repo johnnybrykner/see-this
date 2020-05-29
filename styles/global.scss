@@ -1,0 +1,16 @@
+$primary-color: #f7b048;
+$secondary-color: #dd6166;
+$black-ish: #23221c;
+$white-ish: #e4eae3;
+
+.wrapper {
+  background-color: $primary-color;
+  padding: 6rem;
+
+  .heading {
+    text-align: center;
+    font-family: "NotoBold";
+    color: $black-ish;
+    font-size: 2rem;
+  }
+}
