@@ -6,6 +6,7 @@ $white-ish: #e4eae3;
 .wrapper {
   background-color: $primary-color;
   padding: 6rem;
+  font-family: "NotoRegular";
 
   .heading {
     text-align: center;
@@ -13,4 +14,23 @@ $white-ish: #e4eae3;
     color: $black-ish;
     font-size: 2rem;
   }
+}
+
+.material-icons {
+  font-size: 3rem;
+}
+
+.slide-enter {
+  transform: translateY(-100%);
+}
+.slide-enter-active {
+  transform: translateY(0);
+  transition: transform 300ms;
+}
+.slide-exit {
+  transform: translateY(0);
+}
+.slide-exit-active {
+  transform: translateY(-100%);
+  transition: transform 300ms;
 }

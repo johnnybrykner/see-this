@@ -1,9 +1,9 @@
 import styles from "./FilmCard.module.scss";
 import { connect } from "react-redux";
-import { addFilm } from "../redux/actions";
+import { ADD_FILM } from "../redux/store";
 
 const mapDispatchToProps = {
-  addFilm,
+  ADD_FILM,
 };
 
 function FilmCard(props) {
@@ -12,7 +12,7 @@ function FilmCard(props) {
       <img
         src={props.filmData.imageUrl}
         alt={props.filmData.title + "poster"}
-        onClick={() => props.addFilm(props.filmData)}
+        onClick={() => props.ADD_FILM(props.filmData)}
       />
       <h1>
         {props.filmData.title} ({props.filmData.year})

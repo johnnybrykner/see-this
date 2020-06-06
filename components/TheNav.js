@@ -1,12 +1,17 @@
 import styles from "./TheNav.module.scss";
-import Link from "next/link";
+import { connect } from "react-redux";
+import { TOGGLE_OVERLAY } from "../redux/store";
 
-export default function TheNav() {
+const mapDispatchToProps = {
+  TOGGLE_OVERLAY,
+};
+
+function TheNav(props) {
   return (
     <ul>
-      <Link href="/add">
-        <a>Add films</a>
-      </Link>
+      <a onClick={() => props.TOGGLE_OVERLAY()}>Search for films</a>
     </ul>
   );
 }
+
+export default connect(null, mapDispatchToProps)(TheNav);

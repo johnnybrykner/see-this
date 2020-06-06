@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import styles from "./index.module.scss";
 import Head from "next/head";
 import FilmCard from "../components/FilmCard";
 import TheNav from "../components/TheNav";
+import AddFilmOverlay from "../components/AddFimOverlay";
+import { connect } from "react-redux";
 
-export default function Home() {
+const mapStateToProps = (state) => {
+  return { isOverlayOpen: state.overlayStore.open };
+};
+
+function Home(props) {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
@@ -12,9 +19,7 @@ export default function Home() {
   }, []);
 
   async function fetchData() {
-    const rawData = await fetch(
-      "http://localhost:8888/.netlify/functions/getFilms"
-    );
+    const rawData = await fetch("/.netlify/functions/getFilms");
     const filmsData = await rawData.json();
     setFilms(filmsData);
   }
@@ -30,6 +35,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <CSSTransition
+        in={props.isOverlayOpen}
+        timeout={300}
+        unmountOnExit
+        classNames="slide"
+      >
+        <AddFilmOverlay />
+      </CSSTransition>
+
       <nav>
         <TheNav />
       </nav>
@@ -43,3 +57,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default connect(mapStateToProps)(Home);

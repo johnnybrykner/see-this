@@ -1,0 +1,13 @@
+@import "../styles/global.scss";
+
+.container {
+  flex-flow: column nowrap;
+  display: flex;
+  color: $white-ish;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(14, 13, 11, 0.75);
+}
