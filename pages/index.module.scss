@@ -5,5 +5,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);
     gap: 3rem;
+    justify-content: center;
+
+    h1 {
+      grid-column: 1/-1;
+    }
   }
 }

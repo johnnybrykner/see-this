@@ -8,7 +8,7 @@ const mapDispatchToProps = {
 
 function TheNav(props) {
   return (
-    <ul>
+    <ul className={styles.nav__links}>
       <a onClick={() => props.TOGGLE_OVERLAY()}>Search for films</a>
     </ul>
   );

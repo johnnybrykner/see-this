@@ -11,12 +11,12 @@ function FilmCard(props) {
     <section className={styles.container}>
       <img
         src={props.filmData.imageUrl}
-        alt={props.filmData.title + "poster"}
+        alt={props.filmData.title + " poster"}
         onClick={() => props.ADD_FILM(props.filmData)}
       />
-      <h1>
+      <h2>
         {props.filmData.title} ({props.filmData.year})
-      </h1>
+      </h2>
     </section>
   );
 }

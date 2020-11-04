@@ -3,21 +3,56 @@ $secondary-color: #dd6166;
 $black-ish: #23221c;
 $white-ish: #e4eae3;
 
+$breakpoints: (
+  "sm": 0,
+  "md": 768px,
+  "lg": 1280px,
+  "xl": 1921px,
+);
+
+@mixin when-screen-is($breakpoint) {
+  @media (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+.non-scrollable {
+  overflow: hidden;
+}
+
 .wrapper {
   background-color: $primary-color;
-  padding: 6rem;
+  padding: 2rem;
   font-family: "NotoRegular";
+}
 
-  .heading {
-    text-align: center;
-    font-family: "NotoBold";
-    color: $black-ish;
-    font-size: 2rem;
+.heading {
+  font-family: "NotoBold";
+  color: $black-ish;
+
+  &.h1 {
+    font-size: 28px;
+  }
+  &.h2 {
+    font-size: 22px;
+  }
+  &.h3 {
+    font-size: 16px;
   }
 }
 
 .material-icons {
   font-size: 3rem;
+}
+
+.blurred {
+  transition: filter 0.3s ease;
+  filter: blur(12px) grayscale(1);
+}
+
+.loading__spinner {
+  position: absolute;
+  top: calc(50% - 195px);
 }
 
 .slide-enter {
@@ -32,5 +67,41 @@ $white-ish: #e4eae3;
 }
 .slide-exit-active {
   transform: translateY(-100%);
+  transition: transform 300ms;
+}
+
+.ride-enter {
+  transform: translateX(100%);
+}
+.ride-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+.ride-exit {
+  transform: translateX(0);
+}
+.ride-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms;
+}
+
+.bounce-enter {
+  transform: scale(0);
+  transition: transform 300ms;
+}
+.bounce-enter-active {
+  transform: scale(1.3);
+  transition: transform 300ms;
+}
+.bounce-enter-done {
+  transform: scale(1);
+  transition: transform 300ms;
+}
+.bounce-exit {
+  transform: scale(1);
+  transition: transform 300ms;
+}
+.bounce-exit-active {
+  transform: scale(0);
   transition: transform 300ms;
 }

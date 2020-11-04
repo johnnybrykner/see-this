@@ -2,25 +2,78 @@ import {
   configureStore,
   getDefaultMiddleware,
   createSlice,
+  createAsyncThunk,
 } from "@reduxjs/toolkit";
 
 const middleware = [...getDefaultMiddleware()];
 
 const initialFilmsState = {
-  currentFilms: [],
+  selectedFilms: [],
+  currentQueryResults: {
+    Search: null,
+    totalResults: null,
+    Response: null,
+    Error: null,
+  },
+  loading: false,
+  showNotification: false,
+  notificationText: "",
 };
 
+export const LOOK_UP = createAsyncThunk(
+  "films/lookup",
+  async ({ title, type, year }, { dispatch }) => {
+    dispatch(SET_LOADING(true));
+    const rawData = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}&s=${title}${
+        year ? "&y=" + year : ""
+      }${type ? "&type=" + type : ""}`
+    );
+    const response = await rawData.json();
+    dispatch(SET_LOADING(false));
+    if (response.Error) {
+      dispatch(SHOW_NOTIFICATION(response.Error));
+      return;
+    }
+
+    // setTimeout(() => {
+    // }, 4000);
+    return response;
+  }
+);
+
 const filmsSlice = createSlice({
-  name: "currentFilms",
+  name: "films",
   initialState: initialFilmsState,
   reducers: {
     ADD_FILM: (state, action) => {
-      state.currentFilms = [...state.currentFilms, action.payload];
+      state.selectedFilms = [...state.selectedFilms, action.payload];
+    },
+    SET_LOADING: (state, action) => {
+      state.loading = action.payload;
+    },
+    SHOW_NOTIFICATION: (state, action) => {
+      state.showNotification = true;
+      state.notificationText = action.payload;
+    },
+    RESET_NOTIFICATION: (state) => {
+      state.showNotification = false;
+      state.notificationText = "";
+    },
+  },
+  extraReducers: {
+    [LOOK_UP.fulfilled]: (state, action) => {
+      state.currentQueryResults = action.payload;
     },
   },
 });
 
-export const { ADD_FILM } = filmsSlice.actions;
+export const {
+  ADD_FILM,
+  SET_LOADING,
+  SHOW_NOTIFICATION,
+  RESET_NOTIFICATION,
+} = filmsSlice.actions;
 const filmsReducer = filmsSlice.reducer;
 
 const initialOverlayState = {
